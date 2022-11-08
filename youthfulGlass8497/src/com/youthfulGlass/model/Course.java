@@ -7,7 +7,7 @@ public class Course {
 	private String course_name;
 	private int total_seat;
 	private int coursefee;
-	
+	private int remaining_seats;
 	
 	public Course() {
 		super();
@@ -15,12 +15,13 @@ public class Course {
 	}
 
 
-	public Course(int course_id, String course_name, int total_seat, int coursefee) {
+	public Course(int course_id, String course_name, int total_seat, int coursefee,int remaining_seats) {
 		super();
 		this.course_id = course_id;
 		this.course_name = course_name;
 		this.total_seat = total_seat;
 		this.coursefee = coursefee;
+		this.remaining_seats = remaining_seats;
 	}
 
 
@@ -62,12 +63,20 @@ public class Course {
 	public void setCoursefee(int coursefee) {
 		this.coursefee = coursefee;
 	}
+	
+	public int getremaining_seats() {
+		return remaining_seats;
+	}
 
+
+	public void setremaining_seats(int remaining_seats) {
+		this.remaining_seats = remaining_seats;
+	}
 
 	@Override
 	public String toString() {
 		return "Course [course_id=" + course_id + ", course_name=" + course_name + ", total_seat=" + total_seat
-				+ ", coursefee=" + coursefee + "]";
+				+ ", coursefee=" + coursefee +", remaining_seats=" + remaining_seats + "]";
 	}
 	
 	
