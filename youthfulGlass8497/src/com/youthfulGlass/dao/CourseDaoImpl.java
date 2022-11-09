@@ -5,9 +5,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.youthfulGlass.exception.BatchException;
 import com.youthfulGlass.exception.CourseException;
+import com.youthfulGlass.exception.StudentException;
 import com.youthfulGlass.model.Batch;
+import com.youthfulGlass.model.BatchStudent;
 import com.youthfulGlass.model.Course;
 import com.youthfulGlass.model.Student;
 import com.youthfulGlass.utility.DBAUtility;
@@ -162,5 +167,125 @@ public class CourseDaoImpl implements CourseDao{
 		
 		return message;
 	}
+	
+	
+	
+	@Override
+	public String allocateStudent(int student_id, String course_name) throws StudentException, BatchException {
+		String message = "no Student is allocated...";
+		
+		try(Connection conn = DBAUtility.provideConnection()){
+			
+			PreparedStatement ps = conn.prepareStatement("select * from student where student_id = ?");
+			
+			ps.setInt(1, student_id);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				
+				PreparedStatement ps1 = conn.prepareStatement("insert into batchStudent values(?,?)");
+				
+				
+				ps1.setInt(1, student_id);
+				ps1.setString(2, course_name);
+				
+				int x = ps1.executeUpdate();
+				
+				if(x>0) {
+					
+					PreparedStatement ps2 = conn.prepareStatement("update batch set remaining_seats = remaining_seats - 1 where student_id = ? ");
+					
+					ps2.setInt(1, student_id);
+					
+					int y = ps2.executeUpdate();
+					
+					
+					
+				}else {
+					throw new BatchException("student is not allocated in the batch...");
+				}
+			}
+			
+		}catch (SQLException e) {
+			
+			e.getMessage();
+			
+		}
+		
+		
+		return message;
+	}
+	
+	
+
+	@Override
+	public String updateSeats(int course_id, int remaining_seats) throws CourseException {
+		String message = "no seats are updated...";
+
+		
+		try(Connection conn = DBAUtility.provideConnection()){
+			
+			PreparedStatement ps = conn.prepareStatement("update course set remaining_seats = ? where course_id = ?");
+			
+			ps.setInt(1, remaining_seats);
+			ps.setInt(2, course_id);
+			
+			int x = ps.executeUpdate();
+			
+			if(x>0) {
+				message = "Seats are Updated successfully";
+			}
+			
+		}catch (SQLException e) {
+
+			e.getMessage();
+			
+			throw new CourseException("updation Error...");
+			
+		}
+		
+		
+		
+		
+		return message;
+	}
+
+	@Override
+	public List<BatchStudent> getAllStudentUnderCourse() {
+		List<BatchStudent> arr = new ArrayList<>();
+		
+		try(Connection conn = DBAUtility.provideConnection()){
+			
+			PreparedStatement ps = conn.prepareStatement("select c.course_name , b.student_id , b.student_name , b.mail , s.password from batch b inner join student s on b.student_id = s.student_id ");
+			
+			
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				String cn = rs.getString("course_name");
+				int sid = rs.getInt("student_id");
+				String sn = rs.getString("student_name");
+				String em = rs.getString("mail");
+				String psw = rs.getString("password");
+				
+				
+				arr.add(new BatchStudent(cn,sid,sn,em,psw));
+			}
+			
+		}catch (SQLException e) {
+			
+			e.getMessage();
+
+		}
+		
+		
+		return arr;
+	}
+
+	
+	
+	
 
 }

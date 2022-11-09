@@ -23,6 +23,7 @@ public class BatchUnderCourse {
 		String Email = sc.nextLine();
 		System.out.print("Enter the course name : ");
 		String course_name  = sc.next();
+		
 		System.out.print("Enter the Date of joining: ");
 		String date_of_joining = sc.next();
 		
