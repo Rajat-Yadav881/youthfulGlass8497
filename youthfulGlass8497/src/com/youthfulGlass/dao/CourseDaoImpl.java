@@ -257,7 +257,7 @@ public class CourseDaoImpl implements CourseDao{
 		
 		try(Connection conn = DBAUtility.provideConnection()){
 			
-			PreparedStatement ps = conn.prepareStatement("select c.course_name , b.student_id , b.student_name , b.mail , s.password from batch b inner join student s on b.student_id = s.student_id ");
+			PreparedStatement ps = conn.prepareStatement("select b.course_name , b.student_id , b.student_name , b.mail , s.password from batch b inner join student s on b.student_id = s.student_id");
 			
 			
 			

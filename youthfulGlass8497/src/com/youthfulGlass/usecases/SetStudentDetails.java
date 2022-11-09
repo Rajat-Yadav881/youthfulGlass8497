@@ -7,7 +7,7 @@ import com.youthfulGlass.dao.StudentDaoImpl;
 import com.youthfulGlass.exception.StudentException;
 import com.youthfulGlass.model.Student;
 
-public class StudentRegister {
+public class SetStudentDetails {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
@@ -51,7 +51,7 @@ public class StudentRegister {
 		StudentDao dao = new StudentDaoImpl();
 		
 		try {
-			String message = dao.registerStudent(student);
+			String message = dao.setDetails(student);
 			System.out.println(message);
 		} catch (StudentException e) {
 			// TODO Auto-generated catch block
