@@ -1,7 +1,9 @@
 package com.youthfulGlass.dao;
 
 import com.youthfulGlass.exception.CourseException;
+import com.youthfulGlass.model.Batch;
 import com.youthfulGlass.model.Course;
+import com.youthfulGlass.model.Student;
 
 public interface CourseDao {
 
@@ -13,5 +15,5 @@ public interface CourseDao {
 	
 	public Course getDetailsCourse(int course_id)throws CourseException;
 	
-	
+	public String createBatchUnderCourse(Student student,int course_id,String course_name)throws CourseException;
 }

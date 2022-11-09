@@ -7,7 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.youthfulGlass.exception.CourseException;
+import com.youthfulGlass.model.Batch;
 import com.youthfulGlass.model.Course;
+import com.youthfulGlass.model.Student;
 import com.youthfulGlass.utility.DBAUtility;
 
 public class CourseDaoImpl implements CourseDao{
@@ -117,6 +119,48 @@ public class CourseDaoImpl implements CourseDao{
 		}
 		
 		return course;
+	}
+
+	@Override
+	public String createBatchUnderCourse(Student student, int course_id, String course_name)
+			throws CourseException {
+		String message = null;
+		
+		try(Connection conn = DBAUtility.provideConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("select * from course where course_id = ? and course_name = ?");
+			
+			ps.setInt(1, course_id);
+			ps.setString(2, course_name);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				
+				
+				PreparedStatement ps1 = conn.prepareStatement("insert into batch values(?,?,?,?,?,?)");
+				
+				ps1.setInt(1, student.getStudent_id());
+				ps1.setString(2, student.getStudent_name());
+				ps1.setInt(3, course_id);
+				ps1.setString(4, student.getMail());
+				ps1.setString(5, course_name);
+				ps1.setString(6, student.getDate_of_join());
+				
+				int x = ps1.executeUpdate();
+				
+				if(x>0) {
+					message = "batch is updated under the course...!";
+				}
+				
+			}
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			throw new CourseException("no batch is registered....!");
+		}
+		
+		return message;
 	}
 
 }
