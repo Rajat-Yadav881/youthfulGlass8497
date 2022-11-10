@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.youthfulGlass.exception.StudentException;
+import com.youthfulGlass.model.Course;
 import com.youthfulGlass.model.Student;
 import com.youthfulGlass.utility.DBAUtility;
 
@@ -91,9 +94,64 @@ public class StudentDaoImpl implements StudentDao{
 	}
 
 	@Override
-	public String UpdateDetails() throws StudentException {
-		// TODO Auto-generated method stub
-		return null;
+	public String UpdateDetails(Student student) throws StudentException {
+		
+		String message = "Data is not updated...";
+		
+		try(Connection conn = DBAUtility.provideConnection()){
+			
+			PreparedStatement ps = conn.prepareStatement("update student set address = ?,contact_no = ?,mail = ?,identification = ?,password = ?");
+			
+			ps.setString(1, student.getAddress());
+			ps.setString(2, student.getContact_no());
+			ps.setString(3, student.getMail());
+			ps.setString(4, student.getIdentification());
+			ps.setString(5, student.getPassword());
+			
+			int x = ps.executeUpdate();
+			
+			if(x>0) {
+				message = student.getStudent_name() + "date is been updated...!";
+			}else {
+				throw new StudentException("data Updated failed...!");
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+			
+		}
+		
+		return message;
+		
+	}
+
+	@Override
+	public List<Course> getAllCourses() throws StudentException {
+		List<Course> arr = new ArrayList<>();
+		
+		try (Connection conn = DBAUtility.provideConnection()){
+			
+			PreparedStatement ps = conn.prepareStatement("select course_id , course_name , remaining_seats from course");
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				int a = rs.getInt("course_id");
+				String b = rs.getString("course_name");
+				int x = rs.getInt("total_seat");
+				int y = rs.getInt("course_fee");
+				int c = rs.getInt("remaining_seats");
+				
+				arr.add(new Course(a,b,x,y,c));
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.getMessage();
+		}
+		
+		return arr;
 	}
 
 }
