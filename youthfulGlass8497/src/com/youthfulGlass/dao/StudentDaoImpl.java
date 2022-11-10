@@ -46,16 +46,16 @@ public class StudentDaoImpl implements StudentDao{
 	}
 
 	@Override
-	public String loginStudent(String mail, int password) throws StudentException {
+	public String loginStudent(String mail, String password) throws StudentException {
 		String message = "Not Logged-In...";
 		
 		try(Connection conn = DBAUtility.provideConnection()){
 			
-			PreparedStatement ps = conn.prepareStatement("select * from the student where mail = ? and password = ?");
+			PreparedStatement ps = conn.prepareStatement("select * from student where mail = ? and password = ?");
 			
 			
-			ps.setInt(1, password);
-			ps.setString(2, mail);
+			ps.setString(2, password);
+			ps.setString(1, mail);
 			
 			ResultSet rs = ps.executeQuery();
 			
@@ -88,6 +88,12 @@ public class StudentDaoImpl implements StudentDao{
 		}
 		
 		return message;
+	}
+
+	@Override
+	public String UpdateDetails() throws StudentException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

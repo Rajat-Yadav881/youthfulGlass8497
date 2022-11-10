@@ -7,7 +7,9 @@ public interface StudentDao {
 	
 	public String setDetails(Student student)throws StudentException;
 	
-	public String loginStudent(String mail,int password)throws StudentException;
+	public String loginStudent(String mail,String password)throws StudentException;
+	
+	public String UpdateDetails()throws StudentException;
 	
 	
 }
