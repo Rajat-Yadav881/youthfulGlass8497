@@ -2,6 +2,7 @@ package com.youthfulGlass.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.youthfulGlass.exception.StudentException;
@@ -11,7 +12,7 @@ import com.youthfulGlass.utility.DBAUtility;
 public class StudentDaoImpl implements StudentDao{
 
 	@Override
-	public String registerStudent(Student student)
+	public String setDetails(Student student)
 			throws StudentException {
 		String message = "not Inserted...!";
 		
@@ -39,6 +40,51 @@ public class StudentDaoImpl implements StudentDao{
 			// TODO: handle exception
 			e.printStackTrace();
 			throw new StudentException("Oops,student registration unsuccessful...!");
+		}
+		
+		return message;
+	}
+
+	@Override
+	public String loginStudent(String mail, int password) throws StudentException {
+		String message = "Not Logged-In...";
+		
+		try(Connection conn = DBAUtility.provideConnection()){
+			
+			PreparedStatement ps = conn.prepareStatement("select * from the student where mail = ? and password = ?");
+			
+			
+			ps.setInt(1, password);
+			ps.setString(2, mail);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				
+				int a = rs.getInt("student_id");
+				String b = rs.getString("student_name");
+				String c = rs.getString("date_of_birth");
+				String x = rs.getString("parent_name");
+				String d = rs.getString("address");
+				String e = rs.getString("contact_no");
+				String f = rs.getString("mail");
+				String g = rs.getString("gender");
+				String h = rs.getString("identification");
+				String i = rs.getString("date_of_join");
+				String j = rs.getString("password");
+				
+				Student student = new Student(a,b,c,x,d,e,f,g,h,i,j);
+				
+				message = "login successful...";
+				
+			}else {
+				throw new StudentException("No Data found!!");
+			}
+		 
+			
+		}catch (SQLException e) {
+			// TODO: handle exception
+			e.getMessage();
 		}
 		
 		return message;

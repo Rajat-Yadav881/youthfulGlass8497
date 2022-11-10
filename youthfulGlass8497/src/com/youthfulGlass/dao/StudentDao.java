@@ -4,5 +4,10 @@ import com.youthfulGlass.exception.StudentException;
 import com.youthfulGlass.model.Student;
 
 public interface StudentDao {
-	public String registerStudent(Student student)throws StudentException;
+	
+	public String setDetails(Student student)throws StudentException;
+	
+	public String loginStudent(String mail,int password)throws StudentException;
+	
+	
 }
