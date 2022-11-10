@@ -35,8 +35,8 @@ public class Main {
 		System.out.println();
 		System.out.println("-*-*-*-*-*-*-*-*-*-*-*-");
 		int choice = sc.nextInt();
-		
-		while(choice!=3) {
+		boolean s = true;
+		while(s) {
 			switch (choice) {
 			case 1: {
 				System.out.println("========================");
@@ -56,7 +56,7 @@ public class Main {
 					System.out.print("Enter the Password: ");
 					String password101 = sc.next();
 					
-					if(username101 == username && password101 == password) {
+					if(username101.equals(username) && password101.equals(password)) {
 						System.out.println("Login successfull...");
 						System.out.println();
 						System.out.println("========================");
