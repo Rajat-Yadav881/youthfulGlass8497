@@ -3,10 +3,18 @@ package com.youthfulGlass.utility;
 import java.sql.Connection;
 import java.util.Scanner;
 
+import com.youthfulGlass.usecases.AllocateStudentUnderCourse;
+import com.youthfulGlass.usecases.BatchUnderCourse;
+import com.youthfulGlass.usecases.CourseDetails;
+import com.youthfulGlass.usecases.DeleteTheCourseData;
 import com.youthfulGlass.usecases.GetAllCourses;
+import com.youthfulGlass.usecases.GetAllStudents;
 import com.youthfulGlass.usecases.LoginStudent;
 import com.youthfulGlass.usecases.SetStudentDetails;
+import com.youthfulGlass.usecases.SetTheCourse;
 import com.youthfulGlass.usecases.UpdateDetailsByUser;
+import com.youthfulGlass.usecases.UpdateSeats;
+import com.youthfulGlass.usecases.UpdateTheFee;
 
 public class Main {
 		
@@ -66,27 +74,43 @@ public class Main {
 						
 						switch (choice111) {
 						case 1: {		
+							System.out.println("1.Add the course");
+							SetTheCourse.main(null);
 							break;
 						}
-						case 2: {		
+						case 2: {	
+							System.out.println("2.Update the fees");
+							UpdateTheFee.main(null);
 							break;
 						}
-						case 3: {		
+						case 3: {
+							System.out.println("3.Delete the course");
+							DeleteTheCourseData.main(null);
 							break;
 						}
-						case 4: {		
+						case 4: {	
+							System.out.println("4.Get the details of the course");
+							CourseDetails.main(null);
 							break;
 						}
-						case 5: {		
+						case 5: {	
+							System.out.println("5.Create Batch Under the course");
+							BatchUnderCourse.main(null);
 							break;
 						}
-						case 6: {		
+						case 6: {	
+							System.out.println("6.Allocate Student");
+							AllocateStudentUnderCourse.main(null);
 							break;
 						}
-						case 7: {		
+						case 7: {
+							System.out.println("7.Update the Seats in the course");
+							UpdateSeats.main(null);
 							break;
 						}
-						case 8: {		
+						case 8: {	
+							System.out.println("8.Get all the details of student under the course");
+							GetAllStudents.main(null);
 							break;
 						}
 						
