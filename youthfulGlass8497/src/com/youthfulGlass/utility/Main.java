@@ -22,58 +22,141 @@ public class Main {
 		System.out.println("-----------------------");
 		System.out.println("1.Admin");
 		System.out.println("2.Student");
+		System.out.println("3.Exit");
 		System.out.println("-----------------------");
 		System.out.println();
 		System.out.println("-*-*-*-*-*-*-*-*-*-*-*-");
-		
-		
 		int choice = sc.nextInt();
 		
-		switch (choice) {
-		case 1: {
-			break;		
-		}
-		case 2: {
-			System.out.println("========================");
-			System.out.println("1.Register new Student");
-			System.out.println("2.Login registered Student");
-			System.out.println("========================");
-			int choice301 = sc.nextInt();
-			switch (choice301) {
+		while(choice!=3) {
+			switch (choice) {
 			case 1: {
-				SetStudentDetails.main(null);
-				break;
-			}
-			case 2: {
-				LoginStudent.main(null);
-				System.out.println("========================");
-				System.out.println("1.Update the details of logged Student");
-				System.out.println("2.All information of All the Courses");
 				System.out.println("========================");
 				
-				int choice311 = sc.nextInt();
-				switch (choice311) {
+				System.out.println("1.Login registered Admin");
+				System.out.println("2.Exit");
+				System.out.println("========================");
+				int choice101 = sc.nextInt();
+				switch (choice101) {
 				case 1: {
-					UpdateDetailsByUser.main(null);
+					String username = "myRoot";
+					String password = "root";
+					
+					System.out.print("Enter the username: ");
+					String username101  = sc.next();
+					
+					System.out.print("Enter the Password: ");
+					String password101 = sc.next();
+					
+					if(username101 == username && password101 == password) {
+						System.out.println("Login successfull...");
+						System.out.println();
+						System.out.println("========================");
+						System.out.println("1.Add the course");
+						System.out.println("2.Update the fees");
+						System.out.println("3.Delete the course");
+						System.out.println("4.Get the details of the course");
+						System.out.println("5.Create Batch Under the course");
+						System.out.println("6.Allocate Student");
+						System.out.println("7.Update the Seats in the course");
+						System.out.println("8.Get all the details of student under the course");
+						System.out.println("========================");
+						
+						int choice111 = sc.nextInt();
+						
+						switch (choice111) {
+						case 1: {		
+							break;
+						}
+						case 2: {		
+							break;
+						}
+						case 3: {		
+							break;
+						}
+						case 4: {		
+							break;
+						}
+						case 5: {		
+							break;
+						}
+						case 6: {		
+							break;
+						}
+						case 7: {		
+							break;
+						}
+						case 8: {		
+							break;
+						}
+						
+						default:
+							throw new IllegalArgumentException("Unexpected value: " + choice111);
+						}
+						
+						
+					}else {
+						throw new IllegalArgumentException("Unexpected value");
+					}
 					break;
 				}
 				case 2: {
-					GetAllCourses.main(null);
 					break;
 				}
 				default:
-					throw new IllegalArgumentException("Unexpected value: " + choice311);
+					throw new IllegalArgumentException("Unexpected value: " + choice101);
+				
 				}
 				break;
 			}
-			default:
-				throw new IllegalArgumentException("Unexpected value: " + choice301);
+			case 2: {
+				System.out.println("========================");
+				System.out.println("1.Register new Student");
+				System.out.println("2.Login registered Student");
+				System.out.println("========================");
+				int choice301 = sc.nextInt();
+				switch (choice301) {
+				case 1: {
+					SetStudentDetails.main(null);
+					break;
+				}
+				case 2: {
+					LoginStudent.main(null);
+					System.out.println("========================");
+					System.out.println("1.Update the details of logged Student");
+					System.out.println("2.All information of All the Courses");
+					System.out.println("========================");
+					
+					int choice311 = sc.nextInt();
+					switch (choice311) {
+					case 1: {
+						UpdateDetailsByUser.main(null);
+						break;
+					}
+					case 2: {
+						GetAllCourses.main(null);
+						break;
+					}
+					default:
+						throw new IllegalArgumentException("Unexpected value: " + choice311);
+					}
+					break;
+				}
+				default:
+					throw new IllegalArgumentException("Unexpected value: " + choice301);
+				}
+				break;
 			}
-			break;
+			case 3: {
+				System.out.println("Thankyou...");
+				break;		
+			}
+			default:
+				throw new IllegalArgumentException("Unexpected value: " + choice);
+			}
 		}
-		default:
-			throw new IllegalArgumentException("Unexpected value: " + choice);
-		}
+		
+		
 				
 	}
 }
