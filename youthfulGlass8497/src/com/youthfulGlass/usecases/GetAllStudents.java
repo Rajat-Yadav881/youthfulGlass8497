@@ -13,12 +13,14 @@ public class GetAllStudents {
 		
 		System.out.println("View Student of Every Batch");
 		
+		System.out.print("Enter the course_name: ");
+		String course_name = sc.next();
 	
 		
 		
 		
 		CourseDao courseDao = new CourseDaoImpl();
-		List<BatchStudent> arr = courseDao.getAllStudentUnderCourse();
+		List<BatchStudent> arr = courseDao.getAllStudentUnderCourse(course_name);
 		
 		arr.forEach(s -> System.out.println(s));
 		

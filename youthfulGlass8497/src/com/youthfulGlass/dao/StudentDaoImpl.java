@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.youthfulGlass.exception.CourseException;
 import com.youthfulGlass.exception.StudentException;
 import com.youthfulGlass.model.Course;
 import com.youthfulGlass.model.Student;
@@ -125,12 +126,12 @@ public class StudentDaoImpl implements StudentDao{
 	}
 
 	@Override
-	public List<Course> getAllCourses() throws StudentException {
+	public List<Course> getAllCourses() throws StudentException,CourseException {
 		List<Course> arr = new ArrayList<>();
 		
 		try (Connection conn = DBAUtility.provideConnection()){
 			
-			PreparedStatement ps = conn.prepareStatement("select course_id , course_name , remaining_seats from course");
+			PreparedStatement ps = conn.prepareStatement("select * from course");
 			
 			ResultSet rs = ps.executeQuery();
 			
@@ -149,6 +150,7 @@ public class StudentDaoImpl implements StudentDao{
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.getMessage();
+			throw new StudentException("no data found Error...");
 		}
 		
 		return arr;

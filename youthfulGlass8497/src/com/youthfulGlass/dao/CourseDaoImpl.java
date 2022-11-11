@@ -252,14 +252,14 @@ public class CourseDaoImpl implements CourseDao{
 	}
 
 	@Override
-	public List<BatchStudent> getAllStudentUnderCourse() {
+	public List<BatchStudent> getAllStudentUnderCourse(String course_name) {
 		List<BatchStudent> arr = new ArrayList<>();
 		
 		try(Connection conn = DBAUtility.provideConnection()){
 			
-			PreparedStatement ps = conn.prepareStatement("select b.course_name , b.student_id , b.student_name , b.mail , s.password from batch b inner join student s on b.student_id = s.student_id");
+			PreparedStatement ps = conn.prepareStatement("select b.course_name , b.student_id , b.student_name , b.mail , s.password from batch b inner join student s inner join course c on b.student_id = s.student_id and c.course_name = b.course_name having course_name = ?");
 			
-			
+			ps.setString(1, course_name);
 			
 			ResultSet rs = ps.executeQuery();
 			

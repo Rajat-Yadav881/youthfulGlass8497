@@ -25,7 +25,7 @@ public interface CourseDao {
 	
 	public String updateSeats(int course_id,int remaining_seats) throws CourseException;
 	
-	public List<BatchStudent> getAllStudentUnderCourse();
+	public List<BatchStudent> getAllStudentUnderCourse(String course_name);
 	
 	
 }
