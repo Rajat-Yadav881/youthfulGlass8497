@@ -15,9 +15,12 @@ public class GetAllCourses {
 			List<Course> arr = dao.getAllCourses();
 			
 			arr.forEach(s -> System.out.println(s));
+			
+			
+			
 		} catch (StudentException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e.getMessage();
 		}	
 		
 	}
