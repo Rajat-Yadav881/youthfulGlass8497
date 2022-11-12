@@ -1,18 +1,12 @@
 package com.youthfulGlass.model;
 
-import java.util.Objects;
-
 public class Admin {
 
 	private String username = "myRoot";
 	private String password = "root";
 	
 	
-//	public Admin(String username, String password) {
-//		super();
-//		this.username = username;
-//		this.password = password;
-//	}
+
 
 
 	public String getUsername() {
