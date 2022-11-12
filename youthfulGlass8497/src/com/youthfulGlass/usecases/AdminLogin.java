@@ -1,6 +1,8 @@
 package com.youthfulGlass.usecases;
 
 import java.util.Scanner;
+
+import com.youthfulGlass.model.Admin;
 public class AdminLogin {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -13,8 +15,10 @@ public class AdminLogin {
 			int choice101 = sc.nextInt();
 			switch (choice101) {
 			case 1: {
-				String username = "myRoot";
-				String password = "root";
+				
+				Admin admin = new Admin();
+			
+				
 				
 				System.out.print("Enter the username: ");
 				String username101  = sc.next();
@@ -22,7 +26,7 @@ public class AdminLogin {
 				System.out.print("Enter the Password: ");
 				String password101 = sc.next();
 				
-				if(username101.equals(username) && password101.equals(password)) {
+				if(username101.equals(admin.getUsername()) && password101.equals(admin.getPassword())) {
 					boolean dv = true;
 					while(dv) {
 						System.out.println("Login successfull...");
