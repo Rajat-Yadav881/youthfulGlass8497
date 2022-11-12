@@ -39,7 +39,7 @@ public class StudentDaoImpl implements StudentDao{
 			if(x>0) {
 				message = "Student is Added successfully";
 			}
-			
+			conn.close();
 		}catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -84,7 +84,7 @@ public class StudentDaoImpl implements StudentDao{
 			}else {
 				throw new StudentException("No Data found!!");
 			}
-		 
+			conn.close();
 			
 		}catch (SQLException e) {
 			// TODO: handle exception
@@ -116,6 +116,7 @@ public class StudentDaoImpl implements StudentDao{
 			}else {
 				throw new StudentException("data Updated failed...!");
 			}
+			conn.close();
 		}catch (SQLException e) {
 			e.printStackTrace();
 			
@@ -146,7 +147,7 @@ public class StudentDaoImpl implements StudentDao{
 				arr.add(new Course(a,b,x,y,c));
 				
 			}
-			
+			conn.close();
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.getMessage();

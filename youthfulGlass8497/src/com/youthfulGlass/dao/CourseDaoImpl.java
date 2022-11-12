@@ -38,7 +38,7 @@ public class CourseDaoImpl implements CourseDao{
 			if(x>0) {
 				message = "course data inserted Successfully...!";
 			}
-			
+			conn.close();
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -62,6 +62,7 @@ public class CourseDaoImpl implements CourseDao{
 			if(x>0) {
 				message = "the fee data is updated Successfully...!";
 			}
+			conn.close();
 		}catch(SQLException e) {
 			e.getMessage();
 			throw new CourseException("the fee is updated...");
@@ -84,6 +85,7 @@ public class CourseDaoImpl implements CourseDao{
 			if(x>0) {
 				message = "the data is deleted Successfully...!";
 			}
+			conn.close();
 		}catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -116,7 +118,7 @@ public class CourseDaoImpl implements CourseDao{
 			}else{
 				System.out.println("Course Not Found");
 			}
-			
+			conn.close();
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -159,6 +161,7 @@ public class CourseDaoImpl implements CourseDao{
 				}
 				
 			}
+			conn.close();
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -205,6 +208,7 @@ public class CourseDaoImpl implements CourseDao{
 				}else {
 					throw new BatchException("student is not allocated in the batch...");
 				}
+				conn.close();
 			}
 			
 		}catch (SQLException e) {
@@ -236,6 +240,7 @@ public class CourseDaoImpl implements CourseDao{
 			if(x>0) {
 				message = "Seats are Updated successfully";
 			}
+			conn.close();
 			
 		}catch (SQLException e) {
 
@@ -273,7 +278,7 @@ public class CourseDaoImpl implements CourseDao{
 				
 				arr.add(new BatchStudent(cn,sid,sn,em,psw));
 			}
-			
+			conn.close();
 		}catch (SQLException e) {
 			
 			e.getMessage();
