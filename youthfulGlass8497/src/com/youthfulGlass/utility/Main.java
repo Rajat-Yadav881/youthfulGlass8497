@@ -74,43 +74,62 @@ public class Main {
 						break;
 					}
 					case 2: {
-						System.out.println("========================");
-						System.out.println("1.Register new Student");
-						System.out.println("2.Login registered Student");
-						System.out.println("========================");
-						int choice301 = sc1.nextInt();
-						switch (choice301) {
-						case 1: {
-							SetStudentDetails.main(null);
-							break;
-						}
-						case 2: {
-							LoginStudent.main(null);
+						boolean n = true;
+						while(n) {
 							System.out.println("========================");
-							System.out.println("1.Update the details of logged Student");
-							System.out.println("2.All information of All the Courses");
+							System.out.println("1.Register new Student");
+							System.out.println("2.Login registered Student");
+							System.out.println("3.Back");
 							System.out.println("========================");
-							
-							int choice311 = sc1.nextInt();
-							switch (choice311) {
+							int choice301 = sc1.nextInt();
+							switch (choice301) {
 							case 1: {
-								UpdateDetailsByUser.main(null);
+								SetStudentDetails.main(null);
 								break;
 							}
 							case 2: {
-								GetAllCourses.main(null);
+								boolean x = true;
+								
+								LoginStudent.main(null);
+								while(x) {	
+									System.out.println("========================");
+									System.out.println("1.Update the details of logged Student");
+									System.out.println("2.All information of All the Courses");
+									System.out.println("3.Back");
+									System.out.println("========================");
+									
+									int choice311 = sc1.nextInt();
+									switch (choice311) {
+									case 1: {
+										UpdateDetailsByUser.main(null);
+										break;
+									}
+									case 2: {
+										GetAllCourses.main(null);
+										break;
+									}
+									case 3 :{
+										x = false;
+										break;
+									}
+									default:
+										System.out.println("Unexpected value: " + choice311);
+										break;
+									}
+								}
+								
+								break;
+							}
+							case 3:{
+								n = false;
 								break;
 							}
 							default:
-								System.out.println("Unexpected value: " + choice311);
+								System.out.println("Unexpected value: " + choice301);
 								break;
 							}
-							break;
 						}
-						default:
-							System.out.println("Unexpected value: " + choice301);
-							break;
-						}
+						
 						break;
 					}
 					case 3: {
