@@ -28,7 +28,7 @@ public class Main {
 		
 		String q1 = RandomPasswordGenerator.generateRandomPassword(5);
 		System.err.println("Varification password: "+q1);
-		System.out.print("Enter code to varify: ");
+		System.out.println("Enter code to varify: ");
 		String q2 = ScannerMatchPassword.Scan();
 		
 		if(q1.equals(q2)) {
