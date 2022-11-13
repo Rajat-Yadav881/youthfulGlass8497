@@ -1,5 +1,7 @@
 package com.youthfulGlass.model;
 
+import java.util.Objects;
+
 public class Student {
 
 	private int student_id;
@@ -130,6 +132,29 @@ public class Student {
 				+ date_of_birth + ", parent_name=" + parent_name + ", address=" + address + ", contact_no=" + contact_no
 				+ ", mail=" + mail + ", gender=" + gender + ", identification=" + identification + ", date_of_join="
 				+ date_of_join + ", password=" + password + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(address, contact_no, date_of_birth, date_of_join, gender, identification, mail, parent_name,
+				password, student_id, student_name);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Student other = (Student) obj;
+		return Objects.equals(address, other.address) && Objects.equals(contact_no, other.contact_no)
+				&& Objects.equals(date_of_birth, other.date_of_birth)
+				&& Objects.equals(date_of_join, other.date_of_join) && Objects.equals(gender, other.gender)
+				&& Objects.equals(identification, other.identification) && Objects.equals(mail, other.mail)
+				&& Objects.equals(parent_name, other.parent_name) && Objects.equals(password, other.password)
+				&& student_id == other.student_id && Objects.equals(student_name, other.student_name);
 	}
 	
 	

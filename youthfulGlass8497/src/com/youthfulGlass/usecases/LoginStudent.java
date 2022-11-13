@@ -19,17 +19,14 @@ public class LoginStudent {
 		String password = sc.next();
 		
 		StudentDao dao = new StudentDaoImpl();
-		Student student = new Student();
-		if(student.getPassword().equals(password) && student.getMail().equals(mail)) {
+	
 			try {
 				String message = dao.loginStudent(mail, password);
 				System.out.println(message);
 			} catch (StudentException e) {
 				e.getMessage();
 			}
-		}else {
-			LoginStudent.main(null);
-		}
+		
 		
 		
 		
