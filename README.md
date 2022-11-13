@@ -1,4 +1,6 @@
 # Automated Student Registration System (youthfulGlass8497) 
+
+An automated online registration system allows your application to be customized for each and every member who begins your process. Automation can allow you to auto-fill a returning member's information so they save time and complete their forms more quickly.
 # WorkFlow
 ![Untitled Workspace](https://user-images.githubusercontent.com/105913379/201508884-c0055885-9894-4a3c-9a6a-94de51988df2.jpg)
 # DataBase
